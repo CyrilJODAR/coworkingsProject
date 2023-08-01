@@ -1,0 +1,142 @@
+*,
+::before,
+::after{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+a:visited{
+  color: 282829;
+}
+h1,h2{
+  text-align: center;
+}
+/* ___________________________ HEADER */
+.myHeader{
+  width: 100%;
+  height: 120px;
+  padding: 0 30%;
+  font-size: 1.2rem;
+  background-color: #282829;
+  color: white;
+  margin-bottom: 50px;
+}
+.myHeader a:visited{
+  color: white;
+}
+
+.myHeader ul{
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 50px;
+}
+.myHeader ul li{
+  position: relative;
+}
+.myHeader ul li:not(:nth-child(3))::after{
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0px;
+  background-color: white;
+  height: 2px;
+  margin: 5px auto;
+  transition: all 0.2s ease-in-out;
+}
+.myHeader ul li:not(:nth-child(3)):hover::after{
+  width: 100%;
+}
+.myHeader ul li:nth-child(3){
+  margin: 0 auto;
+}
+.myHomeBtn{
+  border-radius: 1000px;
+  border: 5px solid white;
+  padding: 15px;
+  font-size: 40px;
+}
+/* BODY */
+
+.coworkingFlichknuck{
+  width: 32%;
+  border: 2px solid #282829;
+  border-radius: 5px;
+  text-align: center;
+  padding: 0px 10px 50px;
+  position: relative;
+}
+.addCoworking{
+  border: 2px solid #282829;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 2rem;
+}
+.addCoworking:visited{
+  color:#282829;
+}
+.coworkingFlichknuck:hover{
+  background-color: rgb(255, 255, 255);
+  color: #353536;
+}
+.coworkingFlichknuck a{
+  padding: 5px 25px;
+  position: absolute;
+}
+.btnInfo{
+  border: 2px solid darkgreen;
+  bottom: 2px;
+  left: 20%;
+  color: darkgreen;
+}
+.btnInfo:visited,
+.btnSuppr:visited{
+  color: #282829;
+}
+.btnSuppr{
+  border: 2px solid darkred;
+  bottom: 2px;
+  right: 20%;
+  color: darkred;
+}
+
+.CoworkingsList{
+  margin: 50px 10%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-width: 500px;
+}
+
+.sectionFormAdd{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.formAdd{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-height: 50vh;
+}
+.formAdd div{
+  display: flex;
+  flex-direction: column;
+}
+.formAdd input[type=text]{
+  width: 250px;
+}
+.formAdd input[type=number]{
+  width: 100px;
+  gap: 50px;
+  position: relative;
+}
