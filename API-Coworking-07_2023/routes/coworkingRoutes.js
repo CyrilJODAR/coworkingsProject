@@ -28,7 +28,8 @@ router
 router
     .route('/:id')
     .get(coworkingController.findCoworkingByPk)
-    .put(authController.protect, authController.restrictToOwnUser(CoworkingModel), coworkingController.updateCoworking)
+    // .put(authController.protect, authController.restrictToOwnUser(CoworkingModel), coworkingController.updateCoworking)
+    .put(coworkingController.updateCoworking)
     // .delete(authController.protect, authController.restrictToOwnUser(CoworkingModel), coworkingController.deleteCoworking)
     .delete(coworkingController.deleteCoworking)
 

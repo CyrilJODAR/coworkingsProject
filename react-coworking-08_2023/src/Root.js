@@ -8,6 +8,8 @@ import {
 import CoworkingsPage from './pages/CoworkingsPage';
 import HomePage from './pages/HomePage';
 import CoworkingAdd from './pages/CoworkingAdd';
+import CoworkingUpdate from './pages/CoworkingUpdate';
+import LoginPage from './pages/LoginPage';
 
 // 3️⃣ Router singleton created
 const router = createBrowserRouter([
@@ -26,10 +28,10 @@ function Root() {
   return (
     <Routes>
       <Route path="/" element={<HomePage/>} />
-      <Route path="/coworkings" element={<CoworkingsPage />} />
-      <Route path="/postCoworking" element={<CoworkingAdd />} />
-      {/* <Route path="/blog/*" element={<BlogApp />} />
-      <Route path="/users/*" element={<UserApp />} /> */}
+      <Route path="/login" element={<LoginPage />}/>
+      <Route path="/admin/coworkings" element={<CoworkingsPage />} />
+      <Route path="/admin/coworkings/add" element={<CoworkingAdd />} />
+      <Route path="/admin/coworkings/:id/update" element={<CoworkingUpdate />} />
     </Routes>
   );
 }

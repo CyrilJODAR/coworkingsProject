@@ -9,9 +9,9 @@ const CoworkingAdd = () =>{
         event.preventDefault()
 
         const name = event.target.name.value
-        const priceHour = parseInt(event.target.price_hour.value)
-        const priceDay = parseInt(event.target.price_day.value)
-        const priceMonth = parseInt(event.target.price_month.value)
+        const priceHour = parseFloat(event.target.price_hour.value)
+        const priceDay = parseFloat(event.target.price_day.value)
+        const priceMonth = parseFloat(event.target.price_month.value)
         const superficy = parseInt(event.target.superficy.value)
         const capacity = parseInt(event.target.capacity.value)
         const addressNumber = parseInt(event.target.address_number.value)
@@ -35,7 +35,7 @@ const CoworkingAdd = () =>{
                     "Content-Type": "application/json",
                 }})
           
-    navigate("/coworkings")
+    navigate("/admin/coworkings")
     }
 
     return(

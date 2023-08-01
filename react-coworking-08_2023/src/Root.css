@@ -7,8 +7,8 @@
   list-style: none;
   text-decoration: none;
 }
-a:visited{
-  color: 282829;
+a, a:visited, a:active {
+  color: inherit;
 }
 h1,h2{
   text-align: center;
@@ -59,37 +59,10 @@ h1,h2{
   font-size: 40px;
 }
 /* BODY */
-
-.coworkingFlichknuck{
-  width: 32%;
-  border: 2px solid #282829;
-  border-radius: 5px;
-  text-align: center;
-  padding: 0px 10px 50px;
-  position: relative;
-}
-.addCoworking{
-  border: 2px solid #282829;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  font-size: 2rem;
-}
-.addCoworking:visited{
-  color:#282829;
-}
-.coworkingFlichknuck:hover{
-  background-color: rgb(255, 255, 255);
-  color: #353536;
-}
-.coworkingFlichknuck a{
-  padding: 5px 25px;
-  position: absolute;
-}
 .btnInfo{
   border: 2px solid darkgreen;
   bottom: 2px;
-  left: 20%;
+  left: 10%;
   color: darkgreen;
 }
 .btnInfo:visited,
@@ -99,16 +72,26 @@ h1,h2{
 .btnSuppr{
   border: 2px solid darkred;
   bottom: 2px;
-  right: 20%;
+  left: 64%;
   color: darkred;
+}
+.btnUpdate{
+  border: 2px solid darkblue;
+  bottom: 2px;
+  left: 35%;
+  color: darkblue;
 }
 
 .CoworkingsList{
-  margin: 50px 10%;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  min-width: 500px;
+  gap: 2px;
+}
+.CoworkingsList>div{
+  width: 33%;
+}
+.containerCardCoworking{
+  
 }
 
 .sectionFormAdd{
@@ -139,4 +122,10 @@ h1,h2{
   width: 100px;
   gap: 50px;
   position: relative;
+}
+.errorMessage{
+  color: darkred;
+}
+.successMessage{
+  color: darkgreen;
 }
