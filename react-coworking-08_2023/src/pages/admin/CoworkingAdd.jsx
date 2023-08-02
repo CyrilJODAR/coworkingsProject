@@ -1,9 +1,13 @@
 import { useNavigate } from "react-router-dom"
-import Header from "../components/Header"
+import HeaderAdmin from "../../components/admin/HeaderAdmin"
+import { useEffect } from "react"
+import { RoleUserCheck } from "../../components/admin/RoleUserCheck"
+import Cookies from "js-cookie"
 
 const CoworkingAdd = () =>{
 
     const navigate = useNavigate()
+    if(!Cookies.get('session')) navigate('/login')
 
     const handleSubmitCoworking = async (event) =>{
         event.preventDefault()
@@ -37,10 +41,16 @@ const CoworkingAdd = () =>{
           
     navigate("/admin/coworkings")
     }
+    useEffect(()=>{
+        (async()=>{
+            const myUserRole = await RoleUserCheck()
+            if(myUserRole === 1) {navigate ('/')}
+        })()
+    },[])
 
     return(
         <>  
-            <Header />
+            <HeaderAdmin />
             <section className="sectionFormAdd">
                 <h2>Ajouter un coworking :</h2>
                 <form className="formAdd" onSubmit={handleSubmitCoworking}>

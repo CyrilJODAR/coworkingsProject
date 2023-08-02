@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
-import Header from "../components/Header"
+import HeaderAdmin from "../../components/admin/HeaderAdmin"
 import { useNavigate, useParams } from "react-router-dom"
+import Cookies from "js-cookie"
+import { RoleUserCheck } from "../../components/admin/RoleUserCheck"
 
 const CoworkingUpdate = () =>{
 
@@ -10,6 +12,8 @@ const CoworkingUpdate = () =>{
     const [successMessage, setSuccessMessage] = useState(null)
     const [errorMsg, setErrorMsg] = useState(null)
     const [counter, setCounter] = useState(3)
+
+    if(!Cookies.get('session')) navigate('/login')
 
     const CoworkingDefaultValue = async () =>{
         const fetchDataCoworking = await fetch(`http://localhost:3001/api/coworkings/${id}`)
@@ -63,16 +67,19 @@ const CoworkingUpdate = () =>{
         setTimeout(() => {
             navigate('/admin/coworkings')
         }, 3000);
-        
     }
 
     useEffect(()=>{
+        (async()=>{
+            const myUserRole = await RoleUserCheck()
+            if(myUserRole === 1) {navigate ('/')}
+        })()
         CoworkingDefaultValue()
     },[successMessage,errorMsg])
 
     return(
     <>  
-        <Header />
+        <HeaderAdmin />
         <section className="sectionFormAdd">
             <h2>Ajouter un coworking :</h2>
             <h3 className="successMessage">{successMessage && `Succés ! vous allez être rediriger vers les coworkins dans ${counter} seconds`}</h3> <h3 className="errorMessage">{errorMsg && `Une erreur est intervenu, veuillez réessayer`}</h3>

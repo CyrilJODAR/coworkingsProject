@@ -37,9 +37,8 @@ exports.login = (req, res) => {
                 .then(isValid => {
                     if (isValid) {
                         const token = jwt.sign({
-                            data: req.body.username
+                            data: {username : req.body.username, id : user.id}
                         }, SECRET_KEY, { expiresIn: 60 * 60 });
-
                         res.json({ message: 'login réussi', data: token })
                     } else {
                         return res.json({ message: `Le mot de passe n'est pas correct` })
@@ -59,7 +58,7 @@ exports.protect = (req, res, next) => {
     if (token) {
         try {
             const decoded = jwt.verify(token, SECRET_KEY)
-            req.username = decoded.data
+            req.username = decoded.data.username
             next()
         } catch (error) {
             res.status(403).json({ message: `Le jeton n'est pas valide` })
@@ -98,7 +97,10 @@ exports.restrictToOwnUser = (modelParam) => {
                 }
                 return UserModel.findOne({ where: { username: req.username } })
                     .then(user => {
-                        if (result.UserId !== user.id) {
+                        if(user.RoleId === 3){
+                            return next();
+                        }
+                        if (result.UserId != user.id) {
                             const message = "Tu n'es pas le créateur de cette ressource";
                             return res.status(403).json({ message })
                         }

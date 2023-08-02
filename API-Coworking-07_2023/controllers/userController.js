@@ -59,3 +59,16 @@ exports.deleteUser = (req, res) => {
             res.status(500).json({ message: `${error}` })
         })
 }
+
+exports.getUserbyId = (req, res) => {
+    UserModel
+      .findByPk(req.params.id)
+      .then((user) => {
+        res.status(200).json({ data: user });
+      })
+      .catch((error) => {
+        res.satus(500).json({
+          message: `Nous n'avons pu récupérer les donnéess -> ${error}`,
+        });
+      });
+  };

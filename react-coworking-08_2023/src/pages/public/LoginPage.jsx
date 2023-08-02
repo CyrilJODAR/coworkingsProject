@@ -9,9 +9,13 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { RoleUserCheck } from '../../components/admin/RoleUserCheck';
 
 const LoginPage = () =>{
-
+    const navigate = useNavigate()
+    const [error400, setError400] = useState(null)
     const handleSubmitLogIn = async (event) => {
         event.preventDefault();
         const username = event.target.username.value
@@ -23,13 +27,28 @@ const LoginPage = () =>{
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    username,
-                    password,
+                  username,
+                  password,
                 })
-            })
-          const responsJsonLogin = await myLogin.json()
-          console.log(username, password)
-          Cookies.set("session", responsJsonLogin.data)
+              })
+            if(myLogin.status === 200) {
+                const responsJsonLogin = await myLogin.json()
+                const myjwt = responsJsonLogin.data
+                Cookies.set("session", myjwt)
+              }
+                  // Callback function to handle data received from the
+                //child component
+                  
+              const myUserRole = await RoleUserCheck()
+              if(myUserRole === 3 || myUserRole === 2) {navigate('/admin/dashboard')} else { navigate ('/')}
+
+
+            if(myLogin.status === 404) {
+              setError400(`Les identifiants sont incorrect, veuillez réessayer`)
+              }
+            else{
+              // ERROR SERVER
+              }
         };
 
 
@@ -79,6 +98,7 @@ const LoginPage = () =>{
               >
                 Sign In
               </Button>
+              {error400 && <h3>{error400}</h3>}
               <Grid container>
                 <Grid item>
                   <Link href="#" variant="body2">

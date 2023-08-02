@@ -1,4 +1,4 @@
-import Header from "../components/Header"
+import Header from "../../components/public/Header"
 
 const HomePage = () =>{
     return(
